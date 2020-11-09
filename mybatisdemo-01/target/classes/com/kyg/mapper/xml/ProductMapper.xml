@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kyg.mapper.ProductMapper">
+    <select id="getProductById" parameterType="Integer" resultType="com.kyg.pojo.Product">
+        select * FROM product where id IN (
+          SELECT product_id FROM order_product WHERE order_id = #{id}
+            )
+    </select>
+</mapper>

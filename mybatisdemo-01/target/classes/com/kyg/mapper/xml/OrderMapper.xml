@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kyg.mapper.OrderMapper">
+    <select id="getOrderById" parameterType="Integer" resultMap="orderResultMap">
+        select * from `order` where id = #{id}
+    </select>
+    <resultMap id="orderResultMap" type="com.kyg.pojo.Order">
+        <id property="id" column="id"/>
+        <result property="number" column="number"/>
+        <collection property="products" column="id" ofType="com.kyg.pojo.Product"
+        select="com.kyg.mapper.ProductMapper.getProductById"/>
+    </resultMap>
+</mapper>
